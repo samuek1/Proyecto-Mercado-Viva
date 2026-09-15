@@ -3,6 +3,7 @@
 // Usado por login.js y, en los próximos módulos, por
 // cliente.js, cajero.js e inventario.js.
 // =========================================================
+<<<<<<< HEAD
 
 // En Render el backend sirve también el frontend, por lo que la API vive en
 // el mismo origen. En desarrollo, el frontend usa el backend local:8000.
@@ -14,6 +15,17 @@ const VIVA_API_BASE_URL = (() => {
   if (esLocal && window.location.port !== "8000") return "http://localhost:8000";
   return window.location.origin;
 })();
+=======
+// Ajusta esta URL al host/puerto donde corre el backend FastAPI.
+const VIVA_API_BASE_URL =
+  (window.location.port === "8000" ||
+   window.location.hostname === "localhost" ||
+   window.location.hostname === "127.0.0.1")
+    ? (window.location.port === "8000"
+        ? window.location.origin
+        : "http://localhost:8000")
+    : window.location.origin;
+>>>>>>> 1d2c1fb (Configurar despliegue automatico en Render)
 
 /**
  * Llama a la API de Mercado VIVA y devuelve el JSON de la respuesta.

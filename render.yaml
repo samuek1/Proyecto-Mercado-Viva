@@ -2,10 +2,17 @@ services:
   - type: web
     name: proyecto-mercado-viva
     runtime: python
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: cd backend && python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT --log-level debug
+    healthCheckPath: /api/health
+    autoDeploy: false
     envVars:
       - key: DATABASE_URL
         sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "720"
       - key: ALLOWED_ORIGINS
-        value: https://proyecto-mercado-viva.onrender.com
+        sync: false
